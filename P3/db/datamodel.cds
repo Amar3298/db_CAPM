@@ -1,4 +1,4 @@
-namespace P3.FI;
+namespace FI;
 
 
 entity BSEG

@@ -5,19 +5,29 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "cds serve",
+      "name": "cds run",
       "request": "launch",
       "type": "node",
-      "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "cds",
-      "args": [
-        "serve",
-        "--with-mocks",
-        "--in-memory?"
-      ],
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-n"],
+      "args": ["--", "cds", "run", "--with-mocks", "--in-memory?"], // the leading "--" arg ensures it works with as well as without debugging
+      "cwd": "${workspaceFolder}/${input:service}",
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "server listening on (https?://\\S+|[0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "openExternally"
+      },
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ],
+  "inputs": [
+    {
+      "type": "pickString",
+      "id": "service",
+      "description": "SRV to start",
+      "options": ["P3"],
+      "default": "P3"
     }
   ]
 }

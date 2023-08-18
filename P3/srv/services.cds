@@ -1,5 +1,5 @@
-using P3.FI from '../db/datamodel';
+using FI as my from '../db/datamodel';
 service DEMO {
-    @readonly entity BSEG as projection on FI.BSEG;
-    @readonly entity BKPF as projection on FI.BKPF;
+    @readonly entity BSEGF as projection on my.BSEG;
+    @readonly entity BKPF as projection on my.BKPF;
 }
